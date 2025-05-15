@@ -67,6 +67,21 @@ function verifyCompleteBlockInfo(className) {
   }
 }
 
+function completeInfromationChecker() {
+  const nameVerify = verifyCompleteBlockInfo(".punch-name-js");
+  const timeCardAction = verifyCompleteBlockInfo(".punch-id-js");
+  if (nameVerify == false && timeCardAction == false) {
+    alert("Please fill required fields");
+  } else if (nameVerify == false) {
+    alert("Please select name");
+  } else if (timeCardAction == false) {
+    alert("Please select time card action");
+  } else if (nameVerify == true && timeCardAction == true) {
+    const timeCardData = getTimeCardData(".punch-name-js");
+    sendData(timeCardData);
+    alert("Thank you");
+  }
+}
 
 function getTimeCardActio(className) {
   const timeCardSelections = document.querySelectorAll(className);
@@ -116,44 +131,6 @@ function getTimeCardData(className) {
   }
 }
 
-
-// GPS logic
-
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(logPosition, gpsError);
-  } else {
-    console.error("Geolocation is not supported by this browser.");
-  }
-}
-
-function logPosition(position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
-  console.log(`Latitude: ${lat}, Longitude: ${lon}`);
-}
-
-function gpsError(error) {
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      console.error("User denied the request for Geolocation.");
-      break;
-    case error.POSITION_UNAVAILABLE:
-      console.error("Location information is unavailable.");
-      break;
-    case error.TIMEOUT:
-      console.error("The request to get user location timed out.");
-      break;
-    case error.UNKNOWN_ERROR:
-      console.error("An unknown error occurred.");
-      break;
-  }
-}
-
-
-
-
 function sendData(timeCardData) {
   const url = "http://192.168.1.167:5000/addToTimeSheet"; // URL for the API endpoint
 
@@ -174,32 +151,46 @@ function sendData(timeCardData) {
     .catch((error) => console.error("Error:", error)); // Handle errors
 }
 
-
-function completeInfromationChecker() {
-  const nameVerify = verifyCompleteBlockInfo(".punch-name-js");
-  const timeCardAction = verifyCompleteBlockInfo(".punch-id-js");
-  if (nameVerify == false && timeCardAction == false) {
-    alert("Please fill required fields");
-  } else if (nameVerify == false) {
-    alert("Please select name");
-  } else if (timeCardAction == false) {
-    alert("Please select time card action");
-  } else if (nameVerify == true && timeCardAction == true) {
-    const timeCardData = getTimeCardData(".punch-name-js");
-    sendData(timeCardData);
-    alert("Thank you");
-  }
-}
-
 function submitForm() {
   completeInfromationChecker();
-  getLocation()
-  // const timeCardData = getTimeCardData(".punch-name-js");
+  const timeCardData = getTimeCardData(".punch-name-js");
   
 }
 
-window.onload = getLocation;
 
-document.getElementById("getLocationBtn").addEventListener("click", () => {
-  navigator.geolocation.getCurrentPosition(success, error);
+const button = document.getElementById('getLocationBtn');
+const display = document.getElementById('locationDisplay');
+
+button.addEventListener('click', () => {
+  // Check if geolocation is supported
+  if (!navigator.geolocation) {
+    display.textContent = 'Geolocation is not supported by your browser.';
+    return;
+  }
+
+  // Request user's location
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      display.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+    },
+    (error) => {
+      // Handle possible errors
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          display.textContent = "User denied the request for Geolocation.";
+          break;
+        case error.POSITION_UNAVAILABLE:
+          display.textContent = "Location information is unavailable.";
+          break;
+        case error.TIMEOUT:
+          display.textContent = "The request to get user location timed out.";
+          break;
+        default:
+          display.textContent = "An unknown error occurred.";
+          break;
+      }
+    }
+  );
 });
