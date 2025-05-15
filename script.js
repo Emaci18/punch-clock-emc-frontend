@@ -158,7 +158,7 @@ function submitForm() {
 }
 
 
-const button = document.getElementById('getLocationBtn');
+const button = document.getElementById('btn-submit');
 const display = document.getElementById('locationDisplay');
 
 button.addEventListener('click', () => {
