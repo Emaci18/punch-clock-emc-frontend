@@ -158,10 +158,19 @@ function submitForm() {
 }
 
 
-const button = document.getElementById('btn-submit');
+const getLocationBtn = document.getElementById('getLocationBtn');
 const display = document.getElementById('locationDisplay');
 
-button.addEventListener('click', () => {
+
+
+const submitBtn = document.getElementById('btn-submit');
+submitBtn.disabled = true;
+submitBtn.style.backgroundColor = "red";
+
+
+// Listens for the GPS coordinates
+
+getLocationBtn.addEventListener('click', () => {
   // Check if geolocation is supported
   if (!navigator.geolocation) {
     display.textContent = 'Geolocation is not supported by your browser.';
@@ -173,7 +182,15 @@ button.addEventListener('click', () => {
     (position) => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      display.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+      // Insert desired GPS
+
+      if (latitude == "00.00000" && longitude == "-000.000000"){
+        console.log("GPS matches")
+
+        submitBtn.disabled = false;
+        submitBtn.style.backgroundColor = "green";
+      }
+
     },
     (error) => {
       // Handle possible errors
