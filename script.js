@@ -199,3 +199,7 @@ function submitForm() {
 }
 
 window.onload = getLocation;
+
+document.getElementById("getLocationBtn").addEventListener("click", () => {
+  navigator.geolocation.getCurrentPosition(success, error);
+});
