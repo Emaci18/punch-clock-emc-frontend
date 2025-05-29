@@ -1,115 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
-  </head>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="styles.css">
 
-  <body>
-    <div id="base-container">
-      <div id="main-container" class="container">
-        <div class="item">
-          <p id="main-header">Time Tracker</p>
-        </div>
-        <!-- GPS TEST -->
-        <button id="getLocationBtn">Get My Location</button>
-        <div id="locationDisplay"></div>
-        <!-- Choose Name options-->
-         
-        <div class="question" id="choose-name-options">
-          <div id="choices-container" class="choices">
-            <label>
-              <input
-                onclick="toggleRadioButtonValue('name-1')"
-                class="punch-name-js"
-                type="radio"
-                name="color"
-                value="false"
-                id="name-1"
-              />
-              Enrique
-            </label>
-            <label>
-              <input
-                onclick="toggleRadioButtonValue('name-2')"
-                class="punch-name-js"
-                type="radio"
-                name="color"
-                value="false"
-                id="name-2"
-              />
-              Luis
-            </label>
-            <label>
-              <input
-                onclick="toggleRadioButtonValue('name-3')"
-                class="punch-name-js"
-                type="radio"
-                name="color"
-                value="false"
-                id="name-3"
-              />
-              Gabriel
-            </label>
-            <label>
-              <input
-                onclick="toggleRadioButtonValue('name-4')"
-                class="punch-name-js"
-                type="radio"
-                name="color"
-                value="false"
-                id="name-4"
-              />
-              Elias
-            </label>
-          </div>
-        </div>
-        <!-- The time punch actions -->
-        <div
-          class="punch-button-item"
-          id="choose-punch-time-options
-        "
-        >
-          <button
-            class="punch-options punch-id-js"
-            id="btn-punch-in"
-            value="false"
-            onclick="nameButtonSelector('btn-punch-in') "
-          >
-            PUNCH IN
-          </button>
-          <button
-            class="punch-options punch-id-js"
-            id="btn-lunch-start"
-            value="false"
-            onclick="nameButtonSelector('btn-lunch-start')"
-          >
-            START LUNCH
-          </button>
-          <button
-            class="punch-options punch-id-js"
-            id="btn-lunch-end"
-            value="false"
-            onclick="nameButtonSelector('btn-lunch-end')"
-          >
-            END LUNCH
-          </button>
-          <button
-            class="punch-options punch-id-js"
-            id="btn-punch-end"
-            value="false"
-            onclick="nameButtonSelector('btn-punch-end')"
-          >
-            PUNCH OUT
-          </button>
-          <button id="btn-submit" value="false" onclick="submitForm() ">
-            SUBMIT
-          </button>
-        </div>
-      </div>
+</head>
+<body>
+    <div class="main_header">
+        <div class="logo">Time Tracker</div>
     </div>
-  </body>
+
+    <!-- <div id="homeContainerid" class="home_container">
+        <div id="timecard_selector_id" class="timecard_selector">
+            <button id="start_shift_btn" class="init-btns">Start Shift</button>
+            <button id="end_shift_btn" class="init-btns">End Shift</button>
+            <button id="start_lunch_btn" class="init-btns">Start Lunch</button>
+            <button id="start_shift_btn" class="init-btns">End Lunch</button>
+            <button id="work_on_something_else_btn" class="init-btns">Switch project</button>
+        </div>
+
+    </div> -->
+
+
+
+</body>
+<script src="script.js"></script>
 </html>
