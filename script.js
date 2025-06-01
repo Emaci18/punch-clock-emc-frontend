@@ -9,7 +9,7 @@ let selectedProjectName = null;
 let authenticationStatus = null
 let userCoordinates = null;
 let timeCardOption = null;
-const baseUrl = "http://127.0.0.1:5000"
+const baseUrl = "http://147.182.249.99/"
 const company = "EMC"
 
 //  --------------------------------  Utilities --------------------------------
