@@ -286,7 +286,7 @@ function confirmProjectSelection() {
     dynamicFetch(url, {}, "GET").then(locations => {
 
 
-    let areTheyThere = isWithinRadius(userCoordinates, locations[selectedProjectId])
+    let areTheyThere = isWithinRadius(userCoordinates, locations[selectedProjectId], 100)
 
     
 
