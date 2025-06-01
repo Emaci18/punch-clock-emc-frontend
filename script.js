@@ -35,6 +35,8 @@ function isWithinRadius(userCoordinates, project_coordinates, radiusMeters) {
 
     const distance = R * c;
 
+    console.log(distance <= radiusMeters)
+
     return distance <= radiusMeters;
 }
 
@@ -248,6 +250,15 @@ function createProjectSelectionUI(projects) {
     button.setAttribute('onclick', 'confirmProjectSelection()');
 
     // Assemble the structure
+
+    // Get the gps coornates on page (DELETE LATER)
+
+    const gpsChecker = document.createElement('p')
+    gpsChecker.id = "gpsChecker"
+    gpsChecker.textContent = userCoordinates
+
+    projectContainer.appendChild(gpsChecker)
+
     projectContainer.appendChild(label);
     projectContainer.appendChild(select);
     projectContainer.appendChild(button);
@@ -749,7 +760,8 @@ function thankyouVisual(){
 // 
 
 // Intit
-renderTimecardUI()
+// renderTimecardUI()
+intializeProjectsAvaibleView()
 //  thankyouVisual()
 
 // Projects avaible
