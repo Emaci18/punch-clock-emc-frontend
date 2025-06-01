@@ -124,6 +124,13 @@ function getUserLocation() {
             userCoordinates = latitude + "," + longitude
 
             console.log(userCoordinates)
+        // Get the gps coornates on page (DELETE LATER)
+
+        const gpsChecker = document.createElement('p')
+        gpsChecker.id = "gpsChecker"
+        gpsChecker.textContent = userCoordinates
+        gpsChecker.style.fontSize = "2rem"
+
 
         },
         (error) => {
@@ -251,12 +258,6 @@ function createProjectSelectionUI(projects) {
 
     // Assemble the structure
 
-    // Get the gps coornates on page (DELETE LATER)
-
-    const gpsChecker = document.createElement('p')
-    gpsChecker.id = "gpsChecker"
-    gpsChecker.textContent = userCoordinates
-    gpsChecker.style.fontSize = "2rem"
 
     projectContainer.appendChild(gpsChecker)
 
