@@ -280,6 +280,8 @@ function confirmProjectSelection() {
 
 
     let projectLocation = locations[selectedProjectId]
+    console.log("userCoordinates:", userCoordinates);
+    console.log("projectLocation:", projectLocation);
 
 
     let isUserAtSite = (isWithinBounds(userCoordinates, projectLocation, 0.09, 0.01)); 
