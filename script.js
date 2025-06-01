@@ -15,6 +15,24 @@ const company = "EMC"
 //  --------------------------------  Utilities --------------------------------
 
 
+function isWithinBounds(deviceCoordStr, projectCoordStr, latRange, lonRange) {
+    const parseCoords = str => str.split(',').map(Number);
+
+    const [deviceLat, deviceLon] = parseCoords(deviceCoordStr);
+    const [projectLat, projectLon] = parseCoords(projectCoordStr);
+
+    // Define bounding box
+    const minLat = projectLat - latRange;
+    const maxLat = projectLat + latRange;
+    const minLon = projectLon - lonRange;
+    const maxLon = projectLon + lonRange;
+
+    return (
+        deviceLat >= minLat && deviceLat <= maxLat &&
+        deviceLon >= minLon && deviceLon <= maxLon
+    );
+}
+
 function getSelectedDropdownValue(dropdownId) {
     const dropdown = document.getElementById(dropdownId);
 
@@ -252,7 +270,13 @@ function confirmProjectSelection() {
     url = baseUrl + "/projectLocations"
 
     dynamicFetch(url, {}, "GET").then(locations => {
-    if (locations[selectedProjectId] == userCoordinates){
+
+
+    let projectLocation = locations[selectedProjectId]
+
+
+    let isUserAtSite = (isWithinBounds(userCoordinates, projectLocation, 0.01, 0.01)); 
+    if (isUserAtSite == true){
 
         data = {
             "name": selectedName,
