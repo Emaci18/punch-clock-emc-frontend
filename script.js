@@ -256,6 +256,7 @@ function createProjectSelectionUI(projects) {
     const gpsChecker = document.createElement('p')
     gpsChecker.id = "gpsChecker"
     gpsChecker.textContent = userCoordinates
+    gpsChecker.style.fontSize = "2rem"
 
     projectContainer.appendChild(gpsChecker)
 
