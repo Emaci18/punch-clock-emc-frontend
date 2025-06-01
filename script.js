@@ -33,7 +33,12 @@ function isWithinRadius(verify_coordinates, preset_coordinates, radiusMeters = 1
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     const distance = R * c;
+    console.log(lat1)
+    console.log(lon1)
+    console.log(lat2)
+    console.log(lon2)
     console.log(distance)
+
 
     return distance <= radiusMeters;
 }
