@@ -9,10 +9,38 @@ let selectedProjectName = null;
 let authenticationStatus = null
 let userCoordinates = null;
 let timeCardOption = null;
+const radiusMeters = 100
 const baseUrl = "https://www.roundlovestickers.com"
 const company = "EMC"
 
 //  --------------------------------  Utilities --------------------------------
+function isWithinRadius(userCoordinates, project_coordinates, radiusMeters) {
+    const toRadians = (deg) => deg * Math.PI / 180;
+
+    const [lat1, lon1] = userCoordinates.split(',').map(Number);
+    const [lat2, lon2] = project_coordinates.split(',').map(Number);
+
+    const R = 6371000; // Earth's radius in meters
+
+    const φ1 = toRadians(lat1);
+    const φ2 = toRadians(lat2);
+    const Δφ = toRadians(lat2 - lat1);
+    const Δλ = toRadians(lon2 - lon1);
+
+    const a = Math.sin(Δφ / 2) ** 2 +
+              Math.cos(φ1) * Math.cos(φ2) *
+              Math.sin(Δλ / 2) ** 2;
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const distance = R * c;
+
+    return distance <= radiusMeters;
+}
+
+
+
+
 
 function getSelectedDropdownValue(dropdownId) {
     const dropdown = document.getElementById(dropdownId);
@@ -250,8 +278,13 @@ function confirmProjectSelection() {
 
     url = baseUrl + "/projectLocations"
 
+
+
     dynamicFetch(url, {}, "GET").then(locations => {
-    if (locations[selectedProjectId] == userCoordinates){
+
+        let project_coordinates = locations[selectedProjectId]
+        const isEmployeeOnSite = isWithinRadius(userCoordinates,project_coordinates,radiusMeters )
+    if (isEmployeeOnSite == true){
 
         data = {
             "name": selectedName,
