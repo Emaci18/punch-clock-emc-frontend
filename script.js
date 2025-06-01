@@ -282,6 +282,8 @@ function confirmProjectSelection() {
 
     let areTheyThere = isWithinRadius(userCoordinates, locations[selectedProjectId])
 
+    console.log(areTheyThere)
+
 
         
     if (areTheyThere == true){
