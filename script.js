@@ -21,18 +21,19 @@ function isWithinRadius(verify_coordinates, preset_coordinates, radiusMeters = 1
 
     const R = 6371000; // Earth's radius in meters
 
-    const φ1 = toRadians(lat1);
-    const φ2 = toRadians(lat2);
-    const Δφ = toRadians(lat2 - lat1);
-    const Δλ = toRadians(lon2 - lon1);
+    const latitue1 = toRadians(lat1);
+    const latitue2 = toRadians(lat2);
+    const deltal = toRadians(lat2 - lat1);
+    const deltal2 = toRadians(lon2 - lon1);
 
-    const a = Math.sin(Δφ / 2) ** 2 +
-              Math.cos(φ1) * Math.cos(φ2) *
-              Math.sin(Δλ / 2) ** 2;
+    const a = Math.sin(deltal / 2) ** 2 +
+              Math.cos(latitue1) * Math.cos(latitue2) *
+              Math.sin(deltal2 / 2) ** 2;
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     const distance = R * c;
+    console.log(distance)
 
     return distance <= radiusMeters;
 }
@@ -282,7 +283,7 @@ function confirmProjectSelection() {
 
     let areTheyThere = isWithinRadius(userCoordinates, locations[selectedProjectId])
 
-    console.log(areTheyThere)
+    
 
 
         
