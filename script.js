@@ -13,6 +13,32 @@ const baseUrl = "https://www.roundlovestickers.com"
 const company = "EMC"
 
 //  --------------------------------  Utilities --------------------------------
+function isWithinRadius(verify_coordinates, preset_coordinates, radiusMeters = 100) {
+    const toRadians = (deg) => deg * Math.PI / 180;
+
+    const [lat1, lon1] = verify_coordinates.split(',').map(Number);
+    const [lat2, lon2] = preset_coordinates.split(',').map(Number);
+
+    const R = 6371000; // Earth's radius in meters
+
+    const φ1 = toRadians(lat1);
+    const φ2 = toRadians(lat2);
+    const Δφ = toRadians(lat2 - lat1);
+    const Δλ = toRadians(lon2 - lon1);
+
+    const a = Math.sin(Δφ / 2) ** 2 +
+              Math.cos(φ1) * Math.cos(φ2) *
+              Math.sin(Δλ / 2) ** 2;
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const distance = R * c;
+
+    return distance <= radiusMeters;
+}
+
+
+
 
 
 function getSelectedDropdownValue(dropdownId) {
@@ -82,7 +108,7 @@ function getUserLocation() {
         console.error("Geolocation is not supported by this browser.");
         return;
     }
-
+    
     navigator.geolocation.getCurrentPosition(
         (position) => {
             userCoordinates = {
@@ -252,7 +278,13 @@ function confirmProjectSelection() {
     url = baseUrl + "/projectLocations"
 
     dynamicFetch(url, {}, "GET").then(locations => {
-    if (locations[selectedProjectId] == userCoordinates){
+
+
+    let areTheyThere = isWithinRadius(userCoordinates, locations[selectedProjectId])
+
+
+        
+    if (areTheyThere == true){
 
         data = {
             "name": selectedName,
