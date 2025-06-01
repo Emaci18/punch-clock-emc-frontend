@@ -761,8 +761,8 @@ function thankyouVisual(){
 // 
 
 // Intit
-// renderTimecardUI()
-intializeProjectsAvaibleView()
+renderTimecardUI()
+// intializeProjectsAvaibleView()
 //  thankyouVisual()
 
 // Projects avaible
