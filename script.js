@@ -9,39 +9,10 @@ let selectedProjectName = null;
 let authenticationStatus = null
 let userCoordinates = null;
 let timeCardOption = null;
-const radiusMeters = 100
 const baseUrl = "https://www.roundlovestickers.com"
 const company = "EMC"
 
 //  --------------------------------  Utilities --------------------------------
-function isWithinRadius(userCoordinates, project_coordinates, radiusMeters) {
-    const toRadians = (deg) => deg * Math.PI / 180;
-
-    const [lat1, lon1] = userCoordinates.split(',').map(Number);
-    const [lat2, lon2] = project_coordinates.split(',').map(Number);
-
-    const R = 6371000; // Earth's radius in meters
-
-    const φ1 = toRadians(lat1);
-    const φ2 = toRadians(lat2);
-    const Δφ = toRadians(lat2 - lat1);
-    const Δλ = toRadians(lon2 - lon1);
-
-    const a = Math.sin(Δφ / 2) ** 2 +
-              Math.cos(φ1) * Math.cos(φ2) *
-              Math.sin(Δλ / 2) ** 2;
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    const distance = R * c;
-
-    console.log(distance <= radiusMeters)
-
-    return distance <= radiusMeters;
-}
-
-
-
 
 
 function getSelectedDropdownValue(dropdownId) {
@@ -124,7 +95,6 @@ function getUserLocation() {
             userCoordinates = latitude + "," + longitude
 
             console.log(userCoordinates)
-
 
         },
         (error) => {
@@ -251,10 +221,6 @@ function createProjectSelectionUI(projects) {
     button.setAttribute('onclick', 'confirmProjectSelection()');
 
     // Assemble the structure
-
-
-    projectContainer.appendChild(gpsChecker)
-
     projectContainer.appendChild(label);
     projectContainer.appendChild(select);
     projectContainer.appendChild(button);
@@ -285,13 +251,8 @@ function confirmProjectSelection() {
 
     url = baseUrl + "/projectLocations"
 
-
-
     dynamicFetch(url, {}, "GET").then(locations => {
-
-        let project_coordinates = locations[selectedProjectId]
-        const isEmployeeOnSite = isWithinRadius(userCoordinates,project_coordinates,radiusMeters )
-    if (isEmployeeOnSite == true){
+    if (locations[selectedProjectId] == userCoordinates){
 
         data = {
             "name": selectedName,
@@ -336,7 +297,6 @@ async function intializeProjectsAvaibleView() {
     if (projects) {
         createProjectSelectionUI(projects);
         getUserLocation()
-
         document.getElementById('project_list').addEventListener('click', checkProjectSelection);
 
     } else {
@@ -758,7 +718,6 @@ function thankyouVisual(){
 
 // Intit
 renderTimecardUI()
-// intializeProjectsAvaibleView()
 //  thankyouVisual()
 
 // Projects avaible
