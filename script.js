@@ -336,13 +336,7 @@ async function intializeProjectsAvaibleView() {
     if (projects) {
         createProjectSelectionUI(projects);
         getUserLocation()
-                // Get the gps coornates on page (DELETE LATER)
 
-                const gpsChecker = document.createElement('p')
-                gpsChecker.id = "gpsChecker"
-                gpsChecker.textContent = userCoordinates
-                gpsChecker.style.fontSize = "2rem"
-        
         document.getElementById('project_list').addEventListener('click', checkProjectSelection);
 
     } else {
