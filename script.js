@@ -27,6 +27,13 @@ function isWithinBounds(deviceCoordStr, projectCoordStr, latRange, lonRange) {
     const minLon = projectLon - lonRange;
     const maxLon = projectLon + lonRange;
 
+    console.log(minLat)
+    console.log(maxLat)
+
+    console.log(deviceLat >= minLat && deviceLat <= maxLat &&
+        deviceLon >= minLon && deviceLon <= maxLon)
+
+
     return (
         deviceLat >= minLat && deviceLat <= maxLat &&
         deviceLon >= minLon && deviceLon <= maxLon
