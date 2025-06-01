@@ -27,8 +27,7 @@ function isWithinBounds(deviceCoordStr, projectCoordStr, latRange, lonRange) {
     const minLon = projectLon - lonRange;
     const maxLon = projectLon + lonRange;
 
-    console.log(minLat)
-    console.log(maxLat)
+
 
     console.log(deviceLat >= minLat && deviceLat <= maxLat &&
         deviceLon >= minLon && deviceLon <= maxLon)
@@ -280,8 +279,7 @@ function confirmProjectSelection() {
 
 
     let projectLocation = locations[selectedProjectId]
-    console.log("userCoordinates:", userCoordinates);
-    console.log("projectLocation:", projectLocation);
+
 
 
     let isUserAtSite = (isWithinBounds(userCoordinates, projectLocation, 0.09, 0.01)); 
