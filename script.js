@@ -504,13 +504,13 @@ function initializeCameraUI() {
             video.id = 'videoFeed';
             video.autoplay = true;
             video.srcObject = stream;
-            video.width = 320;
-            video.height = 240;
+            video.width = 240;
+            video.height = 320;
 
             const canvas = document.createElement('canvas');
             canvas.id = 'captureCanvas';
-            canvas.width = 320;
-            canvas.height = 240;
+            canvas.width = 240;
+            canvas.height = 320;
             canvas.style.display = 'none';
 
             const captureBtn = document.createElement('button');
