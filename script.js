@@ -282,7 +282,7 @@ function confirmProjectSelection() {
 
 
 
-    let isUserAtSite = (isWithinBounds(userCoordinates, projectLocation, 0.09, 0.01)); 
+    let isUserAtSite = (isWithinBounds(userCoordinates, projectLocation, 0.05, 0.05)); 
     if (isUserAtSite == true){
 
         data = {
