@@ -653,7 +653,7 @@ function renderTimecardUI() {
         { id: 'end_shift_btn', text: 'Terminar Turno' },
         { id: 'start_lunch_btn', text: 'Empezar Lonche' },
         { id: 'end_lunch_btn', text: 'Terminar Lonche' }, // Fixed duplicate ID from your original HTML
-        { id: 'work_on_something_else_btn', text: 'Prabajar en otro lugar' }
+        { id: 'work_on_something_else_btn', text: 'Trabajar en otro lugar' }
     ];
 
     // Create and append buttons
