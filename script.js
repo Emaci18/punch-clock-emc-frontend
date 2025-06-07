@@ -464,7 +464,7 @@ async function getAuthenticatedResponse(url, data, method) {
     if (authenticationStatus.authentication === "y") {
         
 
-        statusEl.textContent = "✅ User has been authenticated";
+        statusEl.textContent = "✅ Persona verificada";
         timeCardID = authenticationStatus.activeTimeCardId 
         
         if (timeCardID == false){
@@ -495,7 +495,7 @@ async function getAuthenticatedResponse(url, data, method) {
 
 
     } else {
-        statusEl.textContent = "❌ User could not be authenticated. Please try again";
+        statusEl.textContent = "❌ No se pudo verificar su identidad. Por favor trate otra vez";
         console.log("Authentication failed");
     }
 }
