@@ -15,6 +15,10 @@ const company = "EMC"
 //  --------------------------------  Utilities --------------------------------
 
 
+
+// Move take picure to top
+// Make the colors pop for submitting
+
 function isWithinBounds(deviceCoordStr, projectCoordStr, latRange, lonRange) {
     const parseCoords = str => str.split(',').map(Number);
 
@@ -579,9 +583,9 @@ function initializeCameraUI() {
 
 
                 capturedImageContainer.innerHTML = '';
-                capturedImageContainer.appendChild(canvas);
-                capturedImageContainer.appendChild(retakeBtn);
                 capturedImageContainer.appendChild(sumbitAuthBtn)
+                capturedImageContainer.appendChild(retakeBtn);
+                capturedImageContainer.appendChild(canvas);
                 // Subit image
                 document.getElementById("sumbitAuthBtn").addEventListener('click', () => {
                         const selectedNameOption =  getSelectedDropdownValue('nameAuthSelecton')
@@ -599,9 +603,8 @@ function initializeCameraUI() {
                         }
                     });
             });
-
-            liveCamera.appendChild(video);
             liveCamera.appendChild(captureBtn);
+            liveCamera.appendChild(video);
         })
         .catch(error => {
             console.error('Camera access denied or error:', error);
