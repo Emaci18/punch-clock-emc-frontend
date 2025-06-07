@@ -217,7 +217,7 @@ function createProjectSelectionUI(projects) {
     const label = document.createElement('label');
     label.id = 'projectSecetionLabel';
     label.setAttribute('for', 'projects');
-    label.textContent = 'Choose your project:';
+    label.textContent = 'Seleccione el projecto:';
 
     // Select
     const select = document.createElement('select');
@@ -229,7 +229,7 @@ function createProjectSelectionUI(projects) {
     defaultOption.value = '';
     defaultOption.disabled = true;
     defaultOption.selected = true;
-    defaultOption.textContent = '-- Choose project --';
+    defaultOption.textContent = '-- Projectos --';
     select.appendChild(defaultOption);
 
     // Add dynamic project options
@@ -392,7 +392,7 @@ function createNameSelector(users) {
     defaultOption.value = '';
     defaultOption.disabled = true;
     defaultOption.selected = true;
-    defaultOption.textContent = '-- Choose Your Name --';
+    defaultOption.textContent = '-- Seleccione Su Nombre --';
     select.appendChild(defaultOption);
 
     // Dynamically populate names
@@ -410,7 +410,7 @@ function createNameSelector(users) {
     // Camera button
     const button = document.createElement('button');
     button.id = 'intializeCameraBtn';
-    button.textContent = 'Take authentication Photo';
+    button.textContent = 'Abrir camara';
     button.disabled = true;
 
     // Assemble the UI
@@ -469,7 +469,7 @@ async function getAuthenticatedResponse(url, data, method) {
         
         if (timeCardID == false){
             console.log("Hello")
-            alert("Please sign in first")
+            alert("Por favor empize su turno antes de continuar.")
             document.getElementById('FScontainer').remove()
             renderTimecardUI()
         }
@@ -547,7 +547,7 @@ function initializeCameraUI() {
 
             const captureBtn = document.createElement('button');
             captureBtn.id = 'takePictureBtn';
-            captureBtn.textContent = 'Capture';
+            captureBtn.textContent = 'Tomar foto';
             captureBtn.className = 'cameraButton';
 
             captureBtn.addEventListener('click', () => {
@@ -567,14 +567,14 @@ function initializeCameraUI() {
                 // Retake Button
                 const retakeBtn = document.createElement('button');
                     retakeBtn.id = 'retakePictureBtn';
-                    retakeBtn.textContent = 'Retake Picture';
+                    retakeBtn.textContent = 'Retomar Foto';
                     retakeBtn.className = 'cameraButton';
                     retakeBtn.addEventListener('click', () => {
                         initializeCameraUI();
                     });
                 const sumbitAuthBtn = document.createElement('button')
                 sumbitAuthBtn.id = 'sumbitAuthBtn'
-                sumbitAuthBtn.textContent = "Submit Photo"
+                sumbitAuthBtn.textContent = "Submitir Foto"
                 sumbitAuthBtn.className = 'cameraButton'
 
 
@@ -649,11 +649,11 @@ function renderTimecardUI() {
 
     // Button configurations
     const buttons = [
-        { id: 'start_shift_btn', text: 'Start Shift' },
-        { id: 'end_shift_btn', text: 'End Shift' },
-        { id: 'start_lunch_btn', text: 'Start Lunch' },
-        { id: 'end_lunch_btn', text: 'End Lunch' }, // Fixed duplicate ID from your original HTML
-        { id: 'work_on_something_else_btn', text: 'Switch project' }
+        { id: 'start_shift_btn', text: 'Empezar Turno' },
+        { id: 'end_shift_btn', text: 'Terminar Turno' },
+        { id: 'start_lunch_btn', text: 'Empezar Lonche' },
+        { id: 'end_lunch_btn', text: 'Terminar Lonche' }, // Fixed duplicate ID from your original HTML
+        { id: 'work_on_something_else_btn', text: 'Prabajar en otro lugar' }
     ];
 
     // Create and append buttons
@@ -696,12 +696,12 @@ function thankyouVisual(){
     const thankYouText = document.createElement('p')
     thankYouText.id = "thankyouTextid"
     thankYouText.className = "thankyouTextcs"
-    thankYouText.textContent = "Thank you!"
+    thankYouText.textContent = "Gracias!"
 
     const punchAgainBtn = document.createElement('button')
     punchAgainBtn.id = "punchAgainBtn"
     punchAgainBtn.className = "punchAgainBtncs"
-    punchAgainBtn.textContent = "Punch again"
+    punchAgainBtn.textContent = "Hacer otra accion"
     punchAgainBtn.addEventListener("click", () => {
         let authenticationData = {};
         let timeCardID = null;
